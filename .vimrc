@@ -38,10 +38,11 @@ nmap <C-f> :NERDTreeToggle<CR>
 nmap <C-h> :nohl<CR>
 nmap <CR> o<Esc>
 
-augroup Comment
+augroup c
 	autocmd!
 	autocmd FileType c,cpp vmap <buffer> <silent> <C-l> :norm i//<CR>
 	autocmd FileType c,cpp vmap <buffer> <silent> <C-k> :s/\/\///e<CR>:nohl<CR>
 	autocmd FileType c,cpp nmap <buffer> <silent> <C-l> 0i//<Esc>
 	autocmd FileType c,cpp nmap <buffer> <silent> <C-k> <s-v>:s/\/\///e<CR>:nohl<CR>
-augroup end
+	autocmd FileType c,cpp nmap <buffer> <silent> gc [{k<s-v>j%ly<C-o><C-o>
+a
