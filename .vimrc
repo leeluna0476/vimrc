@@ -45,4 +45,4 @@ augroup c
 	autocmd FileType c,cpp nmap <buffer> <silent> <C-l> 0i//<Esc>
 	autocmd FileType c,cpp nmap <buffer> <silent> <C-k> <s-v>:s/\/\///e<CR>:nohl<CR>
 	autocmd FileType c,cpp nmap <buffer> <silent> gc [{k<s-v>j%ly<C-o><C-o>
-a
+augroup end
