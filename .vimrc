@@ -38,7 +38,7 @@ nmap <C-f> :NERDTreeToggle<CR>
 nmap <C-h> :nohl<CR>
 nmap <CR> o<Esc>
 
-augroup CustomMappings
+augroup Comment
 	autocmd!
 	autocmd FileType c,cpp vmap <buffer> <silent> <C-l> :norm i//<CR>
 	autocmd FileType c,cpp vmap <buffer> <silent> <C-k> :s/\/\///e<CR>:nohl<CR>
