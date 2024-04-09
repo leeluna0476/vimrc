@@ -7,11 +7,6 @@ Plugin 'scrooloose/nerdtree'
 call vundle#end()
 filetype plugin indent on
 
-Bundle 'craigemery/vim-autotag'
-let g:AutoTagEnable = 1
-let g:AutoTagTagsFile = 'autotags'
-autocmd BufWritePost *.js,*.jsx,*.ts,*.tsx,*.html,*.php,*.css,*.scss,*.py,*.java,*.rb,*.c silent! AutoTagWrite
-
 let g:NERDTreeWinSize = 35
 let g:NERDTreeHijackNetrw = 0
 let g:NERDTreeQuitOnOpen = 1
