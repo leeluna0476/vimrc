@@ -47,4 +47,4 @@ augroup CustomKeys
 	autocmd FileType c,cpp nmap <buffer> <silent> gp [{k<s-v>j%y<C-o><C-o>
 augroup end
 
-autocmd BufNewFile main.cpp 0 ~/templates/main.cpp
+autocmd BufNewFile main.cpp 0r ~/templates/main.cpp
