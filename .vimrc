@@ -47,4 +47,11 @@ augroup CustomKeys
 	autocmd FileType c,cpp nmap <buffer> <silent> gp [{k<s-v>j%y<C-o><C-o>
 augroup end
 
-autocmd BufNewFile main.cpp 0r ~/templates/main.cpp
+autocmd BufNewFile main.cpp 0r ~/templates/main.cpp | silent! $delete
+autocmd BufNewFile *.hpp 0r ~/templates/header.hpp | silent! $delete
+autocmd BufNewFile *.hpp call SubstituteHeader()
+
+function! SubstituteHeader()
+    let filename = expand('%:t:r')
+    execute ':%s/HEADER/' . toupper(filename) . '/'
+endfunction
