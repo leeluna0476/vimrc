@@ -38,19 +38,19 @@ nmap <C-f> :NERDTreeToggle<CR>
 nmap <C-h> :nohl<CR>
 nmap <CR> o<Esc>
 
-augroup CustomKeys
-	autocmd!
-	autocmd FileType c,cpp vmap <buffer> <silent> <C-l> :norm i//<CR>
-	autocmd FileType c,cpp vmap <buffer> <silent> <C-k> :s/\/\///e<CR>:nohl<CR>
-	autocmd FileType c,cpp nmap <buffer> <silent> <C-l> 0i//<Esc>
-	autocmd FileType c,cpp nmap <buffer> <silent> <C-k> <s-v>:s/\/\///e<CR>:nohl<CR>
-	autocmd FileType c,cpp nmap <buffer> <silent> gp [{k<s-v>j%y<C-o><C-o>
-augroup end
+"shortcut for c,cpp comment
+autocmd FileType c,cpp vmap <buffer> <silent> <C-l> :norm i//<CR>
+autocmd FileType c,cpp vmap <buffer> <silent> <C-k> :s/\/\///e<CR>:nohl<CR>
+autocmd FileType c,cpp nmap <buffer> <silent> <C-l> 0i//<Esc>
+autocmd FileType c,cpp nmap <buffer> <silent> <C-k> <s-v>:s/\/\///e<CR>:nohl<CR>
+autocmd FileType c,cpp nmap <buffer> <silent> gp [{k<s-v>j%y<C-o><C-o>
 
+"apply templates for .cpp and .hpp files
 autocmd BufNewFile main.cpp 0r ~/templates/main.cpp | silent! $delete
 autocmd BufNewFile *.hpp 0r ~/templates/header.hpp | silent! $delete
 autocmd BufNewFile *.hpp call SubstituteHeader()
 
+"A function that retrieves the filename and changes it to uppercase.
 function! SubstituteHeader()
     let filename = expand('%:t:r')
     execute ':%s/HEADER/' . toupper(filename) . '/'
