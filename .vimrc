@@ -42,8 +42,8 @@ nmap <CR> o<Esc>
 autocmd FileType c,cpp vmap <buffer> <silent> <C-l> :norm i//<CR>
 autocmd FileType c,cpp vmap <buffer> <silent> <C-k> :s/\/\///e<CR>:nohl<CR>
 autocmd FileType c,cpp nmap <buffer> <silent> <C-l> 0i//<Esc>
-autocmd FileType c,cpp nmap <buffer> <silent> <C-k> <s-v>:s/\/\///e<CR>:nohl<CR>
-autocmd FileType c,cpp nmap <buffer> <silent> gp [{k<s-v>j%y<C-o><C-o>
+autocmd FileType c,cpp nmap <buffer> <silent> <C-k> V:s/\/\///e<CR>:nohl<CR>
+autocmd FileType c,cpp nmap <buffer> <silent> gp [{kVj%y<C-o><C-o>
 
 "Templates for .cpp and .hpp files
 autocmd BufNewFile main.cpp 0r ~/templates/main.cpp | silent! $delete
