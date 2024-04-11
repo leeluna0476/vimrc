@@ -50,7 +50,7 @@ autocmd BufNewFile main.cpp 0r ~/templates/main.cpp | silent! $delete
 autocmd BufNewFile *.hpp 0r ~/templates/header.hpp | silent! $delete
 autocmd BufNewFile *.hpp call SubstituteHeader()
 
-"A function that retrieves the filename and changes it to uppercase.
+"A function that substitutes HEADER_HPP to (FILENAME)_HPP
 function! SubstituteHeader()
     let filename = expand('%:t:r')
     execute ':%s/HEADER/' . toupper(filename) . '/'
