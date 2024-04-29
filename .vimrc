@@ -38,20 +38,21 @@ imap <Up>    <Nop>
 imap <Down>  <Nop>
 imap <Left>  <Nop>
 imap <Right> <Nop>
-nmap <C-f> :NERDTreeToggle<CR>
 nmap <C-h> :nohl<CR>
 nmap <CR> o<Esc>
+
+autocmd Filetype * nmap <buffer> <silent> <C-f> :NERDTreeToggle<CR>
 
 "shortcut for c,cpp comment
 autocmd FileType c,cpp vmap <buffer> <silent> <C-l> :norm i//<CR>
 autocmd FileType c,cpp vmap <buffer> <silent> <C-k> :s/\/\///e<CR>:nohl<CR>
 autocmd FileType c,cpp nmap <buffer> <silent> <C-l> 0i//<Esc>
-autocmd FileType c,cpp nmap <buffer> <silent> <C-k> <s-v>:s/\/\///e<CR>:nohl<CR>
-autocmd FileType c,cpp nmap <buffer> <silent> gp [{k<s-v>j%y<C-o><C-o>
+autocmd FileType c,cpp nmap <buffer> <silent> <C-k> V:s/\/\///e<CR>:nohl<CR>
+autocmd FileType c,cpp nmap <buffer> <silent> gp [{kVj%y<C-o><C-o>
 
 "apply templates for .cpp and .hpp files
-autocmd BufNewFile main.cpp silent 0r ~/templates/main.cpp | silent! $delete
-autocmd BufNewFile main.c silent 0r ~/templates/main.cpp | silent! $delete
+autocmd BufNewFile test.cpp,main.cpp silent 0r ~/templates/main.cpp | silent! $delete
+autocmd BufNewFile test.c,main.c silent 0r ~/templates/main.cpp | silent! $delete
 autocmd BufNewFile *.hpp silent 0r ~/templates/header.hpp | silent! $delete
 autocmd BufNewFile *.hpp call SubstituteHeader()
 autocmd BufNewFile *.h silent 0r ~/templates/header.hpp | silent! $delete
