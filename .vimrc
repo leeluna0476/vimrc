@@ -38,8 +38,11 @@ imap <Up>    <Nop>
 imap <Down>  <Nop>
 imap <Left>  <Nop>
 imap <Right> <Nop>
-nmap <C-h> :nohl<CR>
 nmap <CR> o<Esc>
+nmap <C-h> :nohl<CR>
+nmap T :tabnew 
+nmap H gT
+nmap L gt
 
 autocmd Filetype * nmap <buffer> <silent> <C-f> :NERDTreeToggle<CR>
 
@@ -63,3 +66,4 @@ function! SubstituteHeader()
     let filename = expand('%:t:r')
     execute ':%s/HEADER/' . toupper(filename) . '/'
 endfunction
+
