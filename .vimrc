@@ -27,8 +27,8 @@ set tags +=./tags,tags;
 set nocompatible
 set backspace=3
 set nu
+set showcmd
 filetype plugin on
-"filetype plugin indent on
 
 nmap <Up>    <Nop>
 nmap <Down>  <Nop>
@@ -46,7 +46,7 @@ nmap L gt
 
 autocmd Filetype * nmap <buffer> <silent> <C-f> :NERDTreeToggle<CR>
 
-"shortcut for c,cpp comment
+"shortcut for c,cpp
 autocmd FileType c,cpp vmap <buffer> <silent> <C-l> :norm i//<CR>
 autocmd FileType c,cpp vmap <buffer> <silent> <C-k> :s/\/\///e<CR>:nohl<CR>
 autocmd FileType c,cpp nmap <buffer> <silent> <C-l> 0i//<Esc>
@@ -66,4 +66,3 @@ function! SubstituteHeader()
     let filename = expand('%:t:r')
     execute ':%s/HEADER/' . toupper(filename) . '/'
 endfunction
-
