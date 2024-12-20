@@ -21,6 +21,7 @@ set showcmd
 set hlsearch
 set incsearch
 set cindent
+set expandtab
 set ts=4
 set sw=4
 set tags +=./tags,tags;
@@ -47,22 +48,28 @@ nmap L gt
 autocmd Filetype * nmap <buffer> <silent> <C-f> :NERDTreeToggle<CR>
 
 "shortcut for c,cpp
-autocmd FileType c,cpp vmap <buffer> <silent> <C-l> :norm i//<CR>
+autocmd FileType c,cpp vmap <buffer> <silent> <C-l> :norm i//<CR>0
 autocmd FileType c,cpp vmap <buffer> <silent> <C-k> :s/\/\///e<CR>:nohl<CR>
-autocmd FileType c,cpp nmap <buffer> <silent> <C-l> 0i//<Esc>
+autocmd FileType c,cpp nmap <buffer> <silent> <C-l> 0:norm i//<CR>0
 autocmd FileType c,cpp nmap <buffer> <silent> <C-k> V:s/\/\///e<CR>:nohl<CR>
 autocmd FileType c,cpp nmap <buffer> <silent> gp [{kVj%y<C-o><C-o>
 
 "apply templates for .cpp and .hpp files
-autocmd BufNewFile test.cpp,main.cpp silent 0r ~/templates/main.cpp | silent! $delete
-autocmd BufNewFile test.c,main.c silent 0r ~/templates/main.cpp | silent! $delete
+autocmd BufNewFile test.cpp,main.cpp,test.c,main.c silent 0r ~/templates/main.cpp | silent! $delete
 autocmd BufNewFile *.hpp silent 0r ~/templates/header.hpp | silent! $delete
-autocmd BufNewFile *.hpp call SubstituteHeader()
-autocmd BufNewFile *.h silent 0r ~/templates/header.hpp | silent! $delete
-autocmd BufNewFile *.h call SubstituteHeader()
+autocmd BufNewFile *.h silent 0r ~/templates/header.h | silent! $delete
+autocmd BufNewFile *.h,*.hpp call SubstituteHeader()
+
+command! -nargs=1 Remote call OpenRemoteFile(<f-args>)
 
 "A function that retrieves the filename and changes it to uppercase.
 function! SubstituteHeader()
     let filename = expand('%:t:r')
     execute ':%s/HEADER/' . toupper(filename) . '/'
 endfunction
+
+"Reinterpret .tpp as .cpp to hightlight the syntax in the same way.
+augroup tpp_files
+    autocmd!
+    autocmd BufNewFile,BufRead *.tpp set filetype=cpp
+augroup END
